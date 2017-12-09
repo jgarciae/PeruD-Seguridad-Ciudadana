@@ -16,12 +16,12 @@ angular.module('users.ctrl', [])
 	}).then(function(modal) {
 	    $scope.modal = modal;
 
-	    if($scope.rusher == null){
-		$scope.modal.show();	
-	    }else{
-		$scope.pushNotification = { checked: $scope.rusher.active };
+	    //if($scope.rusher == null){
+		//$scope.modal.show();	
+	    //}else{
+		//$scope.pushNotification = { checked: $scope.rusher.active };
 		$scope.modal.hide();
-	    }
+	    //}
 	});
 
 	// LOGIN
