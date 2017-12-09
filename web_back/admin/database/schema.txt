@@ -1,0 +1,15 @@
+CREATE TABLE users(
+	id bigserial PRIMARY KEY,
+	dni character varying(8),
+	password character varying(128),
+	created timestamp without time zone,
+	modified timestamp without time zone
+);
+
+CREATE TABLE stations(
+	id bigserial PRIMARY KEY,
+	dni character varying(8),
+	password character varying(128),
+	created timestamp without time zone,
+	modified timestamp without time zone
+);
