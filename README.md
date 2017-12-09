@@ -1,3 +1,5 @@
+Todo el proyecto será realizado en nuestra rama v1.0
+
 Realizamos tres ambientes :
 
 Back : Plataforma web, que servirá para que todos los usuarios de una 
