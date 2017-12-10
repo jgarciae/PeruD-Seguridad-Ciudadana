@@ -19,7 +19,7 @@ class CopsController extends AppController
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow(['login', 'logout']);
+        $this->Auth->allow(['login', 'logout', 'add']);
     }
 
     /**
