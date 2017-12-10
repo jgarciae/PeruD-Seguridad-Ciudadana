@@ -1,0 +1,34 @@
+<ion-view view-title="Mi Perfil">
+    <ion-content class="padding">
+	<div class="card">
+	    <div class="item item-divider">
+		<center>
+		    Hola {{user.first_name}} {{user.last_name}}
+		</center>
+	    </div>
+	    <div class="item item-text-wrap">
+
+		<div class="item item-body">
+		    <center>
+			<h1>4.9</h1>
+			<h1>Reputación</h1>
+		    </center>
+		</div>
+
+		<div class="list">
+
+		    <a class="item item-icon-left" href="#">
+			<i class="icon ion-card"></i>
+			{{user.dni}}
+		    </a>
+
+		    
+		</div>
+	    </div>
+	</div>
+	
+	<ion-list>
+	    <button class="button button-block success" ng-click="signout()">Cerrar Sesión</button>
+	</ion-list>
+    </ion-content>
+</ion-view>

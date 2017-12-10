@@ -1,0 +1,35 @@
+CREATE TABLE users(
+	id bigserial PRIMARY KEY,
+	dni character varying(8),
+	password character varying(128),
+	created timestamp without time zone,
+	modified timestamp without time zone
+);
+
+CREATE TABLE stations(
+	id bigserial PRIMARY KEY,
+	name character varying(128),
+	city character varying(128),
+	province character varying(128),
+	state character varying(128),
+	created timestamp without time zone,
+	modified timestamp without time zone
+);
+
+CREATE TABLE cops(
+	id bigserial PRIMARY KEY,
+	dni character varying(8),
+	password character varying(128),
+	station_id bigint,
+	created timestamp without time zone,
+	modified timestamp without time zone
+);
+
+/***** NEW ******/
+
+ALTER TABLE users ADD COLUMN first_name character varying(64);
+ALTER TABLE users ADD COLUMN last_name character varying(128);
+
+insert into users(id, dni, first_name, last_name) values (1, '46670589', 'Dante', 'Cuevas');
+insert into users(id, dni, first_name, last_name) values (2, '46193536', 'Cesar', 'Juarez');
+insert into users(id, dni, first_name, last_name) values (3, '46259540', 'Jorge', 'Garcia');
