@@ -44,6 +44,32 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
 
+        $this->loadComponent('Auth', [
+            'authError' => 'No tienes acceso a esta administración.',
+            'loginAction' => [
+              'plugin' => false,
+              'controller' => 'Cops',
+              'action' => 'login'
+            ],
+            'loginRedirect' => [
+                'plugin' => false,
+                'controller' => 'Cops',
+                'action' => 'index'
+            ],
+            'logoutRedirect' => [
+                'plugin' => false,
+                'controller' => 'Cops',
+                'action' => 'login'
+            ],
+            'authenticate' => [
+                'Form' => [
+                    'fields' => ['username' => 'dni', 'password' => 'password'],
+                    'userModel' => 'Cops'
+                ],
+            ]
+        ]);
+
+        //$this->Auth->allow(['display']);
         /*
          * Enable the following components for recommended CakePHP security settings.
          * see http://book.cakephp.org/3.0/en/controllers/components/security.html
@@ -58,6 +84,12 @@ class AppController extends Controller
      * @param \Cake\Event\Event $event The beforeRender event.
      * @return \Cake\Network\Response|null|void
      */
+
+    public function beforeFilter(Event $event)
+    {
+        $this->Auth->allow(['display']);
+    }
+
     public function beforeRender(Event $event)
     {
         if (!array_key_exists('_serialize', $this->viewVars) &&
