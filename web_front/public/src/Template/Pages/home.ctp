@@ -326,13 +326,17 @@ function initMap() {
   var directionsDisplay = new google.maps.DirectionsRenderer;
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
-    center: {lat: -34.397, lng: 150.644}
+    center: {lat: -12.046374, lng: -77.042793}
   });
   directionsDisplay.setMap(map);
 
   // var geocoder = new google.maps.Geocoder();
 
   document.getElementById('submit').addEventListener('click', function() {
+    if($('#address').val().length == 0 || $('#address').val().length == 0 ){
+      alert("Por favor ingrese una dirección");
+      return;
+    }
     calculateAndDisplayRoute(directionsService, directionsDisplay);
   });
 }
@@ -351,34 +355,8 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
         });
       }
 
-  // function geocodeAddress(geocoder, resultsMap) {
-  //   var address = document.getElementById('address').value;
-  //   geocoder.geocode({'address': address}, function(results, status) {
-  //     if (status === 'OK') {
-  //       resultsMap.setCenter(results[0].geometry.location);
-  //       var marker = new google.maps.Marker({
-  //         map: resultsMap,
-  //         position: results[0].geometry.location
-  //       });
-  //     } else {
-  //       alert('Geocode was not successful for the following reason: ' + status);
-  //     }
-  //   });
-  //
-  //   var address1 = document.getElementById('address1').value;
-  //   geocoder.geocode({'address1': address}, function(results, status) {
-  //     if (status === 'OK') {
-  //       resultsMap.setCenter(results[0].geometry.location);
-  //       var marker = new google.maps.Marker({
-  //         map: resultsMap,
-  //         position: results[0].geometry.location
-  //       });
-  //     } else {
-  //       alert('Geocode was not successful for the following reason: ' + status);
-  //     }
-  //   });
-  // }
   google.maps.event.addDomListener(window, 'load', initMap);
+
 </script>
 
 <!-- <script type="text/javascript">
