@@ -46,8 +46,17 @@ Router::defaultRouteClass(DashedRoute::class);
 Router::scope('/api', function ($routes) {
     $routes->extensions(['json']);
     $routes->resources('RestUsers', ['map' => 
-        ['signin' => ['action' => 'signin', 'method' => 'POST']]
-    ]);
+            [
+                'signin' => ['action' => 'signin', 'method' => 'POST']
+            ]
+        ]);
+
+    $routes->resources('RestReports', ['map' => 
+            [
+                'insert' => ['action' => 'insert', 'method' => 'POST']
+            ]
+        ]);
+
     /*$routes->resources('RestRoutes', ['map' => 
         ['initialize' => ['action' => 'initialization', 'method' => 'POST'],
          'mark' => ['action' => 'mark', 'method' => 'POST'],
