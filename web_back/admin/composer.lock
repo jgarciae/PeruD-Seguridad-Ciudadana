@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "02678243dc5505e92208cbbd9bd86e43",
+    "content-hash": "58b2014fbf0b122427e572f1ef57ba7c",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -647,6 +647,37 @@
                 "testing"
             ],
             "time": "2017-02-28T12:52:32+00:00"
+        },
+        {
+            "name": "ozee31/cakephp-cors",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ozee31/cakephp-cors.git",
+                "reference": "3e56f65a597878785e22897cf2029f4c06a489e4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ozee31/cakephp-cors/zipball/3e56f65a597878785e22897cf2029f4c06a489e4",
+                "reference": "3e56f65a597878785e22897cf2029f4c06a489e4",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": ">=3.3.2 <4.0.0",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "5.*"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Cors\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "A CakePHP (3.3.x) plugin for activate cors domain in your application",
+            "time": "2017-08-14T09:04:18+00:00"
         },
         {
             "name": "psr/http-message",

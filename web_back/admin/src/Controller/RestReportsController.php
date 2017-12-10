@@ -18,7 +18,7 @@ class RestReportsController extends AppController
 
     public function beforeFilter(Event $event)
     {
-        $this->Auth->allow(['insert', 'generate', 'getRatioReports']);
+        $this->Auth->allow(['insert', 'generate', 'getRatioReports', 'getRouteReports']);
         $this->loadModel('Users');
     }
 
@@ -76,8 +76,6 @@ class RestReportsController extends AppController
         foreach ($reports as $key => $report) {
             $reports[$key]['dateF'] = date('Y-m-d H:i:s', $reports[$key]['date']->sec);
         }
-
-        $this->response->header('Access-Control-Allow-Origin', '*');
 
         $this->set([
             'status' => $status,

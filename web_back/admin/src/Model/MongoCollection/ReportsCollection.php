@@ -101,18 +101,42 @@ class ReportsCollection extends BaseCollection
     	$p2x1 = $p2x + $raq; $p2y1 = $p2y + $m * $raq;
     	$p2x2 = $p2x - $raq; $p2y2 = $p2y - $m * $raq;
 
-    	return $this->find([
+    	debug([$p1x1, $p1y1]);
+    	debug([$p1x2, $p1y2]);
+    	debug([$p2x1, $p2y1]);
+    	debug([$p2x2, $p2y2]);
+    	//exit();
+
+    	/*return $this->find([
 				'location' => [
 					'$geoWithin' => [
 						'$geometry' => [
 							'type' => "Polygon",
-							'coordinates' => [ 
+							'coordinates' => [ [
 								[$p1x1, $p1y1],
 								[$p2x1, $p2y1],
 								[$p2x2, $p2y2],
 								[$p1x2, $p1y2],
 								[$p1x1, $p1y1]
-							]
+							] ]
+						]
+					]
+				]
+			]
+    	);*/
+
+    	return $this->find([
+				'location' => [
+					'$geoWithin' => [
+						'$geometry' => [
+							'type' => "Polygon",
+							'coordinates' => [ [
+								[-16.396750, -71.531344],
+								[-16.394115, -71.534177],
+								[-16.386786, -71.519757],
+								[-16.389759, -71.518384],
+								[-16.396750, -71.531344]
+							] ]
 						]
 					]
 				]
