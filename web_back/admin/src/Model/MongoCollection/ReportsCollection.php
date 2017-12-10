@@ -69,7 +69,7 @@ class ReportsCollection extends BaseCollection
 
     public function ratioReports($query)
     {	
-    	$cond = ($query['modality'] != "") ? ['modality' => $query['modality']] : [];
+    	$cond = (isset($query['modality'])) ? ['modality' => $query['modality']] : [];
     	$find = array_merge([
 				'location' => [
 					'$geoWithin' => [
