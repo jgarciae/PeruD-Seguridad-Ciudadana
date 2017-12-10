@@ -69,8 +69,8 @@ class ReportsCollection extends BaseCollection
 
     public function ratioReports($query)
     {	
-    	return $this->find(
-    		[
+    	$cond = ($query['modality'] != "") ? ['modality' => $query['modality']] : [];
+    	$find = array_merge([
 				'location' => [
 					'$geoWithin' => [
 						'$centerSphere' => [
@@ -81,8 +81,8 @@ class ReportsCollection extends BaseCollection
 				'date' => [
 					'$gte' => new MongoDate(strtotime("-" . (string)$query['last'] . " day"))
 				]
-			]
-		);
+			], $cond);
+    	return $this->find($find);
     }
 
 }
