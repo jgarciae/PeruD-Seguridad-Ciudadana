@@ -114,7 +114,7 @@ $cakeDescription = 'SAMI';
                       <div class="container">
                           <div class="row new-banner-text">
 
-                              <h1 style="color:#0040FF;" data-animate="fadeInDown">Sami Security</h1>
+                              <h1 style="color:#0040FF;" data-animate="fadeInDown">Sami</h1>
                               <p  style="color:black;" class="message" data-animate="fadeInUp">Una mañana desperte con ganas de pasear <br> por mi ciudad gracias a Sami Security, puedo <br> siempre ver mis rutas mas seguras!!</p>
 
 

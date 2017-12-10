@@ -15,7 +15,7 @@ angular.module('user.srv', [])
 		    }
 		}
 
-		$http.post(link, rusher).then(function(response){
+		$http.post(link, user).then(function(response){
 		    deferred.resolve(response.data);
 		}, function(errResponse){
 		    deferred.reject(errResponse);
