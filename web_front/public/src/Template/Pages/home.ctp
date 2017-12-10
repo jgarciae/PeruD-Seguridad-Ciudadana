@@ -58,6 +58,22 @@ $cakeDescription = 'SAMI';
         font-weight: bold;
         padding-bottom: 5px;
     }
+    #map {
+      height: 100%;
+    }
+    /*#floating-panel {
+       position: absolute;
+       top: 10px;
+       left: 25%;
+       z-index: 5;
+       background-color: #fff;
+       padding: 5px;
+       border: 1px solid #999;
+       text-align: center;
+       font-family: 'Roboto','sans-serif';
+       line-height: 30px;
+       padding-left: 10px;
+     }*/
     </style>
 
 
@@ -134,56 +150,13 @@ $cakeDescription = 'SAMI';
                       <div class="col-md-12">
                           <h2 class="title" data-animate="fadeInDown">Ruta Favorita?</h2>
 
-                          <p class="lead">The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. </p>
-
-                          <div class="row services">
-
-                              <div class="col-md-4" data-animate="fadeInUp">
-                                  <div class="icon"><i class="fa fa-home"></i>
-                                  </div>
-                                  <h3 class="heading">Great home</h3>
-                                  <p>Junk MTV quiz graced by fox whelps. </p>
-                              </div>
-
-                              <div class="col-md-4" data-animate="fadeInUp">
-                                  <div class="icon"><i class="fa fa-shopping-cart"></i>
-                                  </div>
-                                  <h3 class="heading">Stuff we would buy ourselves</h3>
-                                  <p>Bawds jog, flick quartz, vex nymphs. </p>
-                              </div>
-
-                              <div class="col-md-4" data-animate="fadeInUp">
-                                  <div class="icon"><i class="fa fa-euro"></i>
-                                  </div>
-                                  <h3 class="heading">Free trial</h3>
-                                  <p>Waltz, bad nymph, for quick jigs vex! Fox nymphs grab quick-jived waltz. </p>
-                              </div>
-
+                          <div id="floating-panel">
+                            <input id="address" type="textbox" placeholder="Ingrese dirección 1" class="col-md-4 col-md-offset-1">
+                            <input id="address1" type="textbox" placeholder="Ingrese dirección 2" class="col-md-4 col-md-offset-1">
+                            <input id="submit" type="button" value="Buscar">
                           </div>
-                          <div class="row services">
-
-                              <div class="col-md-4" data-animate="fadeInUp">
-                                  <div class="icon"><i class="fa fa-bullhorn"></i>
-                                  </div>
-                                  <h3 class="heading">We will propagate your stuff</h3>
-                                  <p>Brick quiz whangs jumpy veldt fox. Bright vixens jump; dozy fowl quack.</p>
-                              </div>
-
-                              <div class="col-md-4" data-animate="fadeInUp">
-                                  <div class="icon"><i class="fa fa-desktop"></i>
-                                  </div>
-                                  <h3 class="heading">Responsive web and app</h3>
-                                  <p>Quick wafting zephyrs vex bold Jim. Quick zephyrs blow, vexing daft Jim. </p>
-                              </div>
-
-                              <div class="col-md-4" data-animate="fadeInUp">
-                                  <div class="icon"><i class="fa fa-heart-o"></i>
-                                  </div>
-                                  <h3 class="heading">Dedicated support team</h3>
-                                  <p>Quick, Baz, get my woven flax jodhpurs! "Now fax quiz Jack!" my brave ghost pled. </p>
-                              </div>
-
-                          </div>
+                          <br>
+                          <div style="height:500px;" id="map"></div>
 
                       </div>
                       <!-- /.12 -->
@@ -345,3 +318,49 @@ $cakeDescription = 'SAMI';
 
       </body>
 </html>
+<script src="https://maps.google.com/maps/api/js?key=AIzaSyCILxmzsVKpgprW3wmiVyBk3-ylNy2g8Vc"></script>
+<script>
+
+function initMap() {
+  var directionsService = new google.maps.DirectionsService;
+  var directionsDisplay = new google.maps.DirectionsRenderer;
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 12,
+    center: {lat: -12.046374, lng: -77.042793}
+  });
+  directionsDisplay.setMap(map);
+
+  // var geocoder = new google.maps.Geocoder();
+
+  document.getElementById('submit').addEventListener('click', function() {
+    if($('#address').val().length == 0 || $('#address').val().length == 0 ){
+      alert("Por favor ingrese una dirección");
+      return;
+    }
+    calculateAndDisplayRoute(directionsService, directionsDisplay);
+  });
+}
+
+function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+        directionsService.route({
+          origin: document.getElementById('address').value,
+          destination: document.getElementById('address1').value,
+          travelMode: 'DRIVING'
+        }, function(response, status) {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
+
+  google.maps.event.addDomListener(window, 'load', initMap);
+
+</script>
+
+<!-- <script type="text/javascript">
+$( document ).ready(function() {
+  initMap();
+});
+</script> -->

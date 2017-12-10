@@ -53,7 +53,9 @@ Router::scope('/api', function ($routes) {
 
     $routes->resources('RestReports', ['map' => 
             [
-                'insert' => ['action' => 'insert', 'method' => 'POST']
+                'insert' => ['action' => 'insert', 'method' => 'POST'],
+                'generate' => ['action' => 'generate', 'method' => 'POST'],
+                'get_ratio_reports' => ['action' => 'getRatioReports', 'method' => 'POST']
             ]
         ]);
 
