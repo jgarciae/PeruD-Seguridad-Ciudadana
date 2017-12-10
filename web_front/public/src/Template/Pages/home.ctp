@@ -25,7 +25,7 @@ if (!Configure::read('debug')):
     throw new NotFoundException('Please replace src/Template/Pages/home.ctp with your own version.');
 endif;
 
-$cakeDescription = 'CakePHP: the rapid development PHP framework';
+$cakeDescription = 'SAMI';
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,241 +35,313 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
     <title>
         <?= $cakeDescription ?>
     </title>
+     <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,700,900' rel='stylesheet' type='text/css'>
+     <!-- css -->
     <?= $this->Html->meta('icon') ?>
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('cake.css') ?>
-    <?= $this->Html->css('home.css') ?>
-    <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
+    <?= $this->Html->css('font-awesome.css') ?>
+    <?= $this->Html->css('bootstrap.min.css') ?>
+    <?= $this->Html->css('owl.theme.css') ?>
+    <?= $this->Html->css('style.default.css') ?>
+    <?= $this->Html->css('custom.css') ?>
+    <?= $this->Html->css('animate.css') ?>
+
+    <!-- js -->
+    <?= $this->Html->script('modernizr-2.6.2.min.js'); ?>
+
+    <script src=""></script>
+    <style>
+    .new-banner-text{
+        margin-right: 15px;
+        text-align: left;
+        font-size: 30px;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding-bottom: 5px;
+    }
+    </style>
+
+
 </head>
-<body class="home">
+<body data-spy="scroll" data-target="#navigation" data-offset="120">
 
-<header class="row">
-    <div class="header-image"><?= $this->Html->image('cake.logo.svg') ?></div>
-    <div class="header-title">
-        <h1>Welcome to CakePHP <?= Configure::version() ?> Red Velvet. Build fast. Grow solid.</h1>
-    </div>
-</header>
 
-<div class="row">
-    <div class="columns large-12">
-        <div class="ctp-warning alert text-center">
-            <p>Please be aware that this page will not be shown if you turn off debug mode unless you replace src/Template/Pages/home.ctp with your own version.</p>
-        </div>
-        <div id="url-rewriting-warning" class="alert url-rewriting">
-            <ul>
-                <li class="bullet problem">
-                    URL rewriting is not properly configured on your server.<br />
-                    1) <a target="_blank" href="http://book.cakephp.org/3.0/en/installation.html#url-rewriting">Help me configure it</a><br />
-                    2) <a target="_blank" href="http://book.cakephp.org/3.0/en/development/configuration.html#general-configuration">I don't / can't use URL rewriting</a>
-                </li>
-            </ul>
-        </div>
-        <?php Debugger::checkSecurityKeys(); ?>
-    </div>
-</div>
+          <!-- *** NAVBAR ***
+          _________________________________________________________ -->
 
-<div class="row">
-    <div class="columns large-6">
-        <h4>Environment</h4>
-        <ul>
-        <?php if (version_compare(PHP_VERSION, '5.5.9', '>=')): ?>
-            <li class="bullet success">Your version of PHP is 5.5.9 or higher (detected <?= PHP_VERSION ?>).</li>
-        <?php else: ?>
-            <li class="bullet problem">Your version of PHP is too low. You need PHP 5.5.9 or higher to use CakePHP (detected <?= PHP_VERSION ?>).</li>
-        <?php endif; ?>
+          <div class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbar">
+              <div class="container">
+                  <div class="navbar-header">
+                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                          <span class="sr-only">Toggle navigation</span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                      </button>
+                      <a class="navbar-brand scrollTo" href="#intro">
+                        <img src="img/logo.png" alt="" style="margin-top: -10%;">
+                      </a>
+                  </div>
 
-        <?php if (extension_loaded('mbstring')): ?>
-            <li class="bullet success">Your version of PHP has the mbstring extension loaded.</li>
-        <?php else: ?>
-            <li class="bullet problem">Your version of PHP does NOT have the mbstring extension loaded.</li>;
-        <?php endif; ?>
+                  <div class="navbar-collapse collapse" id="navigation">
 
-        <?php if (extension_loaded('openssl')): ?>
-            <li class="bullet success">Your version of PHP has the openssl extension loaded.</li>
-        <?php elseif (extension_loaded('mcrypt')): ?>
-            <li class="bullet success">Your version of PHP has the mcrypt extension loaded.</li>
-        <?php else: ?>
-            <li class="bullet problem">Your version of PHP does NOT have the openssl or mcrypt extension loaded.</li>
-        <?php endif; ?>
+                      <ul class="nav navbar-nav navbar-right">
+                          <li class="active"><a href="#intro">Inicio</a>
+                          </li>
+                          <li><a href="#section1">Ruta Favorita</a>
+                          </li>
+                          <li><a href="#section2">Estadísticas</a>
+                          </li>
+                          <li><a href="#section4">Contact</a>
+                          </li>
+                      </ul>
+                  </div>
+                  <!--/.nav-collapse -->
 
-        <?php if (extension_loaded('intl')): ?>
-            <li class="bullet success">Your version of PHP has the intl extension loaded.</li>
-        <?php else: ?>
-            <li class="bullet problem">Your version of PHP does NOT have the intl extension loaded.</li>
-        <?php endif; ?>
-        </ul>
-    </div>
-    <div class="columns large-6">
-        <h4>Filesystem</h4>
-        <ul>
-        <?php if (is_writable(TMP)): ?>
-            <li class="bullet success">Your tmp directory is writable.</li>
-        <?php else: ?>
-            <li class="bullet problem">Your tmp directory is NOT writable.</li>
-        <?php endif; ?>
+              </div>
+          </div>
+          <!-- /#navbar -->
 
-        <?php if (is_writable(LOGS)): ?>
-            <li class="bullet success">Your logs directory is writable.</li>
-        <?php else: ?>
-            <li class="bullet problem">Your logs directory is NOT writable.</li>
-        <?php endif; ?>
+          <!-- *** NAVBAR END *** -->
 
-        <?php $settings = Cache::config('_cake_core_'); ?>
-        <?php if (!empty($settings)): ?>
-            <li class="bullet success">The <em><?= $settings['className'] ?>Engine</em> is being used for core caching. To change the config edit config/app.php</li>
-        <?php else: ?>
-            <li class="bullet problem">Your cache is NOT working. Please check the settings in config/app.php</li>
-        <?php endif; ?>
-        </ul>
-    </div>
-    <hr />
-</div>
 
-<div class="row">
-    <div class="columns large-6">
-        <h4>Database</h4>
-        <?php
-        try {
-            $connection = ConnectionManager::get('default');
-            $connected = $connection->connect();
-        } catch (Exception $connectionError) {
-            $connected = false;
-            $errorMsg = $connectionError->getMessage();
-            if (method_exists($connectionError, 'getAttributes')):
-                $attributes = $connectionError->getAttributes();
-                if (isset($errorMsg['message'])):
-                    $errorMsg .= '<br />' . $attributes['message'];
-                endif;
-            endif;
-        }
-        ?>
-        <ul>
-        <?php if ($connected): ?>
-            <li class="bullet success">CakePHP is able to connect to the database.</li>
-        <?php else: ?>
-            <li class="bullet problem">CakePHP is NOT able to connect to the database.<br /><?= $errorMsg ?></li>
-        <?php endif; ?>
-        </ul>
-    </div>
-    <div class="columns large-6">
-        <h4>DebugKit</h4>
-        <ul>
-        <?php if (Plugin::loaded('DebugKit')): ?>
-            <li class="bullet success">DebugKit is loaded.</li>
-        <?php else: ?>
-            <li class="bullet problem">DebugKit is NOT loaded. You need to either install pdo_sqlite, or define the "debug_kit" connection name.</li>
-        <?php endif; ?>
-        </ul>
-    </div>
-    <hr />
-</div>
+          <div id="all">
 
-<div class="row">
-    <div class="columns large-6">
-        <h3>Editing this Page</h3>
-        <ul>
-            <li class="bullet cutlery">To change the content of this page, edit: src/Template/Pages/home.ctp.</li>
-            <li class="bullet cutlery">You can also add some CSS styles for your pages at: webroot/css/.</li>
-        </ul>
-    </div>
-    <div class="columns large-6">
-        <h3>Getting Started</h3>
-        <ul>
-            <li class="bullet book"><a target="_blank" href="http://book.cakephp.org/3.0/en/">CakePHP 3.0 Docs</a></li>
-            <li class="bullet book"><a target="_blank" href="http://book.cakephp.org/3.0/en/tutorials-and-examples/bookmarks/intro.html">The 15 min Bookmarker Tutorial</a></li>
-            <li class="bullet book"><a target="_blank" href="http://book.cakephp.org/3.0/en/tutorials-and-examples/blog/blog.html">The 15 min Blog Tutorial</a></li>
-        </ul>
-        <p>
-    </div>
-</div>
 
-<div class="row">
-    <div class="columns large-12 text-center">
-        <h3 class="more">More about Cake</h3>
-        <p>
-            CakePHP is a rapid development framework for PHP which uses commonly known design patterns like Front Controller and MVC.<br />
-            Our primary goal is to provide a structured framework that enables PHP users at all levels to rapidly develop robust web applications, without any loss to flexibility.
-        </p>
-    </div>
-    <hr/>
-</div>
+              <!-- *** INTRO IMAGE ***
+          _________________________________________________________ -->
+              <div id="intro" class="clearfix">
+                  <div class="item">
+                      <div class="container">
+                          <div class="row new-banner-text">
 
-<div class="row">
-    <div class="columns large-4">
-        <i class="icon support">P</i>
-        <h3>Help and Bug Reports</h3>
-        <ul>
-            <li class="bullet cutlery">
-                <a href="irc://irc.freenode.net/cakephp">irc.freenode.net #cakephp</a>
-                <ul><li>Live chat about CakePHP</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="https://github.com/cakephp/cakephp/issues">CakePHP Issues</a>
-                <ul><li>CakePHP issues and pull requests</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="http://discourse.cakephp.org/">CakePHP Forum</a>
-                <ul><li>CakePHP official discussion forum</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="https://groups.google.com/group/cake-php">CakePHP Google Group</a>
-                <ul><li>Community mailing list</li></ul>
-            </li>
-        </ul>
-    </div>
-    <div class="columns large-4">
-        <i class="icon docs">r</i>
-        <h3>Docs and Downloads</h3>
-        <ul>
-            <li class="bullet cutlery">
-                <a href="http://api.cakephp.org/3.0/">CakePHP API</a>
-                <ul><li>Quick Reference</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="http://book.cakephp.org/3.0/en/">CakePHP Documentation</a>
-                <ul><li>Your Rapid Development Cookbook</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="http://bakery.cakephp.org">The Bakery</a>
-                <ul><li>Everything CakePHP</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="http://plugins.cakephp.org">CakePHP plugins repo</a>
-                <ul><li>A comprehensive list of all CakePHP plugins created by the community</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="https://github.com/cakephp/">CakePHP Code</a>
-                <ul><li>For the Development of CakePHP Git repository, Downloads</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="https://github.com/FriendsOfCake/awesome-cakephp">CakePHP Awesome List</a>
-                <ul><li>A curated list of amazingly awesome CakePHP plugins, resources and shiny things.</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="http://www.cakephp.org">CakePHP</a>
-                <ul><li>The Rapid Development Framework</li></ul>
-            </li>
-        </ul>
-    </div>
-    <div class="columns large-4">
-        <i class="icon training">s</i>
-        <h3>Training and Certification</h3>
-        <ul>
-            <li class="bullet cutlery">
-                <a href="http://cakefoundation.org/">Cake Software Foundation</a>
-                <ul><li>Promoting development related to CakePHP</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="http://training.cakephp.org/">CakePHP Training</a>
-                <ul><li>Learn to use the CakePHP framework</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="http://certification.cakephp.org/">CakePHP Certification</a>
-                <ul><li>Become a certified CakePHP developer</li></ul>
-            </li>
-        </ul>
-    </div>
-</div>
+                              <h1 style="color:#0040FF;" data-animate="fadeInDown">Sami</h1>
+                              <p  style="color:black;" class="message" data-animate="fadeInUp">Una mañana desperte con ganas de pasear <br> por mi ciudad gracias a Sami Security, puedo <br> siempre ver mis rutas mas seguras!!</p>
 
-</body>
+
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- *** INTRO IMAGE END *** -->
+
+
+
+              <!-- *** SERVICES ***
+          _________________________________________________________ -->
+              <div class="section" id="section1">
+                  <div class="container">
+                      <div class="col-md-12">
+                          <h2 class="title" data-animate="fadeInDown">Ruta Favorita?</h2>
+
+                          <p class="lead">The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. </p>
+
+                          <div class="row services">
+
+                              <div class="col-md-4" data-animate="fadeInUp">
+                                  <div class="icon"><i class="fa fa-home"></i>
+                                  </div>
+                                  <h3 class="heading">Great home</h3>
+                                  <p>Junk MTV quiz graced by fox whelps. </p>
+                              </div>
+
+                              <div class="col-md-4" data-animate="fadeInUp">
+                                  <div class="icon"><i class="fa fa-shopping-cart"></i>
+                                  </div>
+                                  <h3 class="heading">Stuff we would buy ourselves</h3>
+                                  <p>Bawds jog, flick quartz, vex nymphs. </p>
+                              </div>
+
+                              <div class="col-md-4" data-animate="fadeInUp">
+                                  <div class="icon"><i class="fa fa-euro"></i>
+                                  </div>
+                                  <h3 class="heading">Free trial</h3>
+                                  <p>Waltz, bad nymph, for quick jigs vex! Fox nymphs grab quick-jived waltz. </p>
+                              </div>
+
+                          </div>
+                          <div class="row services">
+
+                              <div class="col-md-4" data-animate="fadeInUp">
+                                  <div class="icon"><i class="fa fa-bullhorn"></i>
+                                  </div>
+                                  <h3 class="heading">We will propagate your stuff</h3>
+                                  <p>Brick quiz whangs jumpy veldt fox. Bright vixens jump; dozy fowl quack.</p>
+                              </div>
+
+                              <div class="col-md-4" data-animate="fadeInUp">
+                                  <div class="icon"><i class="fa fa-desktop"></i>
+                                  </div>
+                                  <h3 class="heading">Responsive web and app</h3>
+                                  <p>Quick wafting zephyrs vex bold Jim. Quick zephyrs blow, vexing daft Jim. </p>
+                              </div>
+
+                              <div class="col-md-4" data-animate="fadeInUp">
+                                  <div class="icon"><i class="fa fa-heart-o"></i>
+                                  </div>
+                                  <h3 class="heading">Dedicated support team</h3>
+                                  <p>Quick, Baz, get my woven flax jodhpurs! "Now fax quiz Jack!" my brave ghost pled. </p>
+                              </div>
+
+                          </div>
+
+                      </div>
+                      <!-- /.12 -->
+                  </div>
+                  <!-- /.container -->
+              </div>
+              <!-- /.section -->
+
+              <!-- *** SERVICES END *** -->
+
+
+              <!-- *** Estadísticas ***
+          _________________________________________________________ -->
+
+              <div class="section  text-gray" id="section2">
+                  <div class="container">
+                      <div class="col-md-12">
+
+
+                          <h2 class="title" data-animate="fadeInDown">Estadísticas</h2>
+
+                          <div class="row">
+
+                              <div class="col-md-8 col-md-offset-2">
+
+                                  <p class="text-large text-thin"  data-animate="fadeInUp">Five quacking zephyrs jolt my wax bed. Flummoxed by job, kvetching W. zaps Iraq. Cozy sphinx waves quart jug of bad milk. </p>
+                                  <p class="text-large text-thin margin-bottom"  data-animate="fadeInUp">A very bad quack might jinx zippy fowls. Few quips galvanized the mock jury box. Quick brown dogs jump over the lazy fox. The jay, pig, fox, zebra, and my wolves quack! Blowzy red vixens fight for a quick jump. Joaquin Phoenix was gazed by MTV for luck. A wizard’s job is to vex chumps quickly in fog. Watch "Jeopardy!", Alex Trebek's fun TV quiz game. Woven silk pyjamas exchanged for blue quartz.</p>
+
+                                  <p   data-animate="fadeInUp"><img src="img/team.jpg" alt="" class="img-circle img-responsive ondra-michal"></p>
+
+                              </div>
+
+                          </div>
+
+                      </div>
+                      <!-- /.12 -->
+                  </div>
+                  <!-- /.container -->
+              </div>
+              <!-- /.section -->
+
+              <!-- *** Estadísticas END *** -->
+
+              <!-- *** JOIN US ***
+          _________________________________________________________ -->
+
+              <div class="section" data-animate="bounceIn">
+                  <div class="container">
+                      <div class="col-md-8 col-md-offset-2">
+
+
+                          <h2 class="title">Join us for the fun!</h2>
+
+                          <p class="lead margin-bottom">Blowzy red vixens fight for a quick jump. Joaquin Phoenix was gazed by MTV for luck. A wizard’s job is to vex chumps quickly in fog. Watch "Jeopardy! ", Alex Trebek's fun TV quiz game. Woven silk pyjamas exchanged for blue quartz. Brawny gods just.</p>
+
+
+                          <div class="row">
+
+                              <div class="col-md-8 col-md-offset-2">
+
+
+                                  <form action="#" method="post" id="frm-landingPage2" class="form">
+                                      <div class="input-group">
+
+                                          <input type="text" class="form-control" placeholder="your email address" name="email" id="frm-landingPage2-email" required value="">
+
+                                          <span class="input-group-btn">
+
+                                              <input class="btn btn-default" type="submit" value="Submit" name="_submit" id="frm-landingPage2-submit">
+
+                                          </span>
+
+                                      </div>
+                                      <!-- /input-group -->
+                                  </form>
+                              </div>
+                          </div>
+
+                      </div>
+                      <!-- /.12 -->
+                  </div>
+                  <!-- /.container -->
+              </div>
+              <!-- /.section -->
+
+              <!-- *** JOIN US END *** -->
+
+              <!-- *** CONTACT ***
+          _________________________________________________________ -->
+
+              <div class="section" id="section4" >
+                  <div class="container">
+                      <div class="col-md-8 col-md-offset-2">
+
+
+                          <h2 class="title" data-animate="fadeInDown">Contact us</h2>
+
+                          <p class="lead margin-bottom" data-animate="fadeInUp">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
+
+
+                          <ul class="list-unstyled text-large text-thin" data-animate="fadeInUp">
+                              <li><strong>E-mail:</strong> hello@hello.com</li>
+                              <li><strong>Phone:</strong> 123 456 888</li>
+                          </ul>
+
+                      </div>
+                      <!-- /.12 -->
+                  </div>
+                  <!-- /.container -->
+              </div>
+              <!-- /.section -->
+
+
+
+              <!-- *** FOOTER ***
+          _________________________________________________________ -->
+
+              <div class="section" id="footer">
+                  <div class="container">
+
+                      <div class="row">
+
+                          <div class="col-sm-6">
+
+                              <p class="social">
+                                  <a href="#" class="external facebook" data-animate-hover="shake" data-animate="fadeInUp"><i class="fa fa-facebook"></i></a>
+                                  <a href="#" class="external instagram" data-animate-hover="shake" data-animate="fadeInUp"><i class="fa fa-instagram"></i></a>
+                                  <a href="#" class="external twitter" data-animate-hover="shake" data-animate="fadeInUp"><i class="fa fa-twitter"></i></a>
+                                  <a href="mailto:#" class="email" data-animate-hover="shake" data-animate="fadeInUp"><i class="fa fa-envelope"></i></a>
+                              </p>
+                          </div>
+                          <!-- /.6 -->
+
+                          <div class="col-sm-6">
+                              <p>&copy; 2016 Your name goes here.
+                                  <!-- Do not remove the attribution, thx! If you need to do so, pls donate (http://bootstrapious.com/donate) to support us! -->
+                                  Template by <a href="https://www.bootstrapious.com/landing-pages" class="external">Bootstrapious</a>.</p>
+                          </div>
+
+                      </div>
+
+                  </div>
+                  <!-- /.container -->
+              </div>
+              <!-- /.section -->
+
+              <!-- *** FOOTER END *** -->
+          </div>
+
+          <!-- js base -->
+
+          <?= $this->Html->script('jquery-1.11.0.min.js'); ?>
+          <?= $this->Html->script('bootstrap.min.js'); ?>
+          <?= $this->Html->script('waypoints.min.js'); ?>
+          <?= $this->Html->script('owl.carousel.min.js'); ?>
+          <?= $this->Html->script('jquery.scrollTo.min.js'); ?>
+          <?= $this->Html->script('front.js'); ?>
+
+
+      </body>
 </html>

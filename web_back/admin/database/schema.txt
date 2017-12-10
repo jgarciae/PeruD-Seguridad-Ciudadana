@@ -24,3 +24,12 @@ CREATE TABLE cops(
 	created timestamp without time zone,
 	modified timestamp without time zone
 );
+
+/***** NEW ******/
+
+ALTER TABLE users ADD COLUMN first_name character varying(64);
+ALTER TABLE users ADD COLUMN last_name character varying(128);
+
+insert into users(id, dni, first_name, last_name) values (1, '46670589', 'Dante', 'Cuevas');
+insert into users(id, dni, first_name, last_name) values (2, '46193536', 'Cesar', 'Juarez');
+insert into users(id, dni, first_name, last_name) values (3, '46259540', 'Jorge', 'Garcia');

@@ -2,6 +2,7 @@
 namespace App\Model\MongoCollection;
 
 use CakeMonga\MongoCollection\BaseCollection;
+use MongoDate;
 
 class ReportsCollection extends BaseCollection
 {
@@ -17,9 +18,9 @@ class ReportsCollection extends BaseCollection
 	        			(float)$report['lng']
 	        		]
 	        	],
-	        	'intensity' => (int)$report['intesity'],
-	        	'modality' => (int),
-	        	'date' => date('c')
+	        	'intensity' => $report['intensity'],
+	        	'modality' => $report['modality'],
+	        	'date' => new MongoDate()
 	        ]
         );
     }

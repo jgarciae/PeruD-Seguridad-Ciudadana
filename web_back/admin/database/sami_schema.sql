@@ -1,193 +1,75 @@
---
--- PostgreSQL database dump
---
+-- Adminer 4.3.1 PostgreSQL dump
 
--- Dumped from database version 9.5.10
--- Dumped by pg_dump version 9.5.10
+DROP TABLE IF EXISTS "cops";
+CREATE SEQUENCE cops_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
 
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SET check_function_bodies = false;
-SET client_min_messages = warning;
-SET row_security = off;
-
---
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+CREATE TABLE "public"."cops" (
+    "id" bigint DEFAULT nextval('cops_id_seq') NOT NULL,
+    "dni" character varying(8),
+    "password" character varying(128),
+    "station_id" bigint,
+    "created" timestamp,
+    "modified" timestamp,
+    CONSTRAINT "cops_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
 
 
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
---
+DROP TABLE IF EXISTS "stations";
+CREATE SEQUENCE stations_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
 
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
-SET search_path = public, pg_catalog;
-
-SET default_tablespace = '';
-
-SET default_with_oids = false;
-
---
--- Name: cops; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE cops (
-    id bigint NOT NULL,
-    dni character varying(8),
-    password character varying(128),
-    station_id bigint,
-    created timestamp without time zone,
-    modified timestamp without time zone
-);
+CREATE TABLE "public"."stations" (
+    "id" bigint DEFAULT nextval('stations_id_seq') NOT NULL,
+    "name" character varying(128),
+    "city" character varying(128),
+    "province" character varying(128),
+    "state" character varying(128),
+    "created" timestamp,
+    "modified" timestamp,
+    CONSTRAINT "stations_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
 
 
---
--- Name: cops_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
+DROP TABLE IF EXISTS "users";
+CREATE SEQUENCE users_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
 
-CREATE SEQUENCE cops_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: cops_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE cops_id_seq OWNED BY cops.id;
+CREATE TABLE "public"."users" (
+    "id" bigint DEFAULT nextval('users_id_seq') NOT NULL,
+    "dni" character varying(8),
+    "password" character varying(128),
+    "created" timestamp,
+    "modified" timestamp,
+    "first_name" character varying(64),
+    "last_name" character varying(128),
+    CONSTRAINT "users_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
 
 
---
--- Name: stations; Type: TABLE; Schema: public; Owner: -
---
+DROP TABLE IF EXISTS "registers";
+CREATE SEQUENCE registers_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
 
-CREATE TABLE stations (
-    id bigint NOT NULL,
-    name character varying(128),
-    city character varying(128),
-    province character varying(128),
-    state character varying(128),
-    created timestamp without time zone,
-    modified timestamp without time zone
-);
-
-
---
--- Name: stations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE stations_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: stations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE stations_id_seq OWNED BY stations.id;
+CREATE TABLE "public"."registers" (
+    "id" integer DEFAULT nextval('registers_id_seq') NOT NULL,
+    "departments" text,
+    "provinces" text,
+    "districts" text,
+    "cities" text,
+    "stations" text,
+    "generic" text,
+    "specific" text,
+    "modality" text,
+    "place" text,
+    "relationship" text,
+    "half_used" text,
+    "age" text,
+    "gender" text,
+    "year_2011" text,
+    "year_2012" text,
+    "year_2013" text,
+    "year_2014" text,
+    "year_2015" text,
+    "year_2016" text,
+    CONSTRAINT "registers_id" PRIMARY KEY ("id")
+) WITH (oids = false);
 
 
---
--- Name: users; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE users (
-    id bigint NOT NULL,
-    dni character varying(8),
-    password character varying(128),
-    created timestamp without time zone,
-    modified timestamp without time zone
-);
-
-
---
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE users_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE users_id_seq OWNED BY users.id;
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY cops ALTER COLUMN id SET DEFAULT nextval('cops_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY stations ALTER COLUMN id SET DEFAULT nextval('stations_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
-
-
---
--- Name: cops_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY cops
-    ADD CONSTRAINT cops_pkey PRIMARY KEY (id);
-
-
---
--- Name: stations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY stations
-    ADD CONSTRAINT stations_pkey PRIMARY KEY (id);
-
-
---
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY users
-    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
-
-
---
--- Name: public; Type: ACL; Schema: -; Owner: -
---
-
-REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM postgres;
-GRANT ALL ON SCHEMA public TO postgres;
-GRANT ALL ON SCHEMA public TO PUBLIC;
-
-
---
--- PostgreSQL database dump complete
---
-
+-- 2017-12-09 21:34:49.015932-05
