@@ -85,4 +85,33 @@ class ReportsCollection extends BaseCollection
     	return $this->find($find);
     }
 
+    /*public function routeReports($query)
+    {
+    	$p1x = (float)$query['p1_lat'];
+    	$p1y = (float)$query['p1_lng'];
+    	$p2x = (float)$query['p2_lat'];
+    	$p2y = (float)$query['p2_lng'];
+    	$d = (float)$query['dif'];
+    	$m = ($p1y - $p2y) / ($p1x - $p2x);
+    	$x1 = 
+
+    	return $this->find([
+				'location' => [
+					'$geoWithin' => [
+						'$geometry' => [
+							'type' => "Polygon",
+							'coordinates' => [ 
+								[],
+								[],
+								[],
+								[],
+								[]
+							]
+						]
+					]
+				]
+			]
+    	);
+    }*/
+
 }

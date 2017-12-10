@@ -18,7 +18,7 @@ class RestReportsController extends AppController
 
     public function beforeFilter(Event $event)
     {
-        //$this->Auth->allow(['insert']);
+        $this->Auth->allow(['insert', 'generate', 'getRatioReports']);
         $this->loadModel('Users');
     }
 
@@ -85,4 +85,26 @@ class RestReportsController extends AppController
             '_serialize' => ['status', 'message', 'count', 'reports']
         ]);
     }
+
+    /*public function getRouteReports()
+    {
+        $reportsCollection = CollectionRegistry::get('Reports');
+        $reports = $reportsCollection->routeReports($this->request->data);
+
+        $reports = $reports->toArray();
+        
+        $status = '200';
+        $message = 'Ok';
+        foreach ($reports as $key => $report) {
+            $reports[$key]['dateF'] = date('Y-m-d H:i:s', $reports[$key]['date']->sec);
+        }
+
+        $this->set([
+            'status' => $status,
+            'message' => $message,
+            'reports' => $reports,
+            'count' => count($reports),
+            '_serialize' => ['status', 'message', 'count', 'reports']
+        ]);
+    }*/
 }

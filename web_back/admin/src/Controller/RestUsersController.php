@@ -17,7 +17,7 @@ class RestUsersController extends AppController
 
     public function beforeFilter(Event $event)
     {
-        //$this->Auth->allow(['signin']);
+        $this->Auth->allow(['signin']);
         $this->loadModel('Users');
     }
 
