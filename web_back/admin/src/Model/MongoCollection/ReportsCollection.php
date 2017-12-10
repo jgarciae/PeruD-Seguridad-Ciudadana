@@ -67,4 +67,22 @@ class ReportsCollection extends BaseCollection
     	return $this->insert($reports);
     }
 
+    public function ratioReports($query)
+    {	
+    	return $this->find(
+    		[
+				'location' => [
+					'$geoWithin' => [
+						'$centerSphere' => [
+							[(float)$query['lat'], (float)$query['lng']], ($query['meters'] / 6378100)
+						]
+					]
+				],
+				'date' => [
+					'$gte' => new MongoDate(strtotime("-" . (string)$query['last'] . " day"))
+				]
+			]
+		);
+    }
+
 }

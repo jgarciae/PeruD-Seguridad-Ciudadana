@@ -63,4 +63,30 @@ class RestReportsController extends AppController
             '_serialize' => ['status', 'message']
         ]);
     }
+
+    public function getRatioReports()
+    {
+        $reportsCollection = CollectionRegistry::get('Reports');
+        $reports = $reportsCollection->ratioReports($this->request->data);
+
+        $reports = $reports->toArray();
+        
+        if (!empty($reports)) {
+            $status = '200';
+            $message = 'Ok';
+            foreach ($reports as $key => $report) {
+                $reports[$key]['dateF'] = date('Y-m-d H:i:s', $reports[$key]['date']->sec);
+            }
+        }else{
+            $status = '500';
+            $message = 'Internal Server Error';
+        }
+
+        $this->set([
+            'status' => $status,
+            'message' => $message,
+            'reports' => $reports,
+            '_serialize' => ['status', 'message', 'reports']
+        ]);
+    }
 }
