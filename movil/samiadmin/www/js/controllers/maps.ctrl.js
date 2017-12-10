@@ -1,5 +1,5 @@
 angular.module('maps.ctrl', [])
-    .controller('MapsCtrl', function($scope, $state, $cordovaGeolocation, $ionicPopup, $ionicLoading, $ionicHistory, $state, $ionicModal) {
+    .controller('MapsCtrl', function($scope, $state, $cordovaGeolocation, $ionicPopup, $ionicLoading, $ionicHistory, $state, $ionicModal, Report) {
 	$scope.data = {};
 	$scope.modal;
 	$scope.requestData = {};
@@ -211,7 +211,7 @@ angular.module('maps.ctrl', [])
 		
 		var mapOptions = {
 		    center: latLngOrigin,
-		    zoom: 17,
+		    zoom: 13,
 		    disableDefaultUI: true,
 		    //mapTypeId: google.maps.MapTypeId.ROADMAP,
 		    mapTypeControl: false,
@@ -256,10 +256,8 @@ angular.module('maps.ctrl', [])
 			map: $scope.map,
 			animation: google.maps.Animation.DROP,
 			position: latLngOrigin,
-			icon: 'http://www.nyaradzo.co.zw/images/map-marker-icon.png'
+			icon: 'https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/running-32.png'
 		    });
-
-		    console.log(myAddress);
 		    
 		    var contentString = '<strong>' + myAddress + '</strong><br>';
 		    
@@ -286,8 +284,56 @@ angular.module('maps.ctrl', [])
 	$scope.search = function(){
 	    $scope.requestData['lat'] = latLngOrigin.lat();
 	    $scope.requestData['lng'] = latLngOrigin.lng();
+	    
+	    $ionicLoading.show({
+		template: '<ion-spinner icon="ripple"></ion-spinner> <br/> Obteniendo puntos...'
+	    });
 
+	    console.log($scope.requestData);
+	    
+	    Report.getRatio($scope.requestData).then(function(data){
+		$ionicLoading.hide();
+		if(data.status == "200"){
 
+		    var report;
+
+		    var marker;
+		    for(report in data.reports){
+
+			var infoWindow = new google.maps.InfoWindow();
+
+			var latLngMarker = {
+			    lat: data.reports[report].location.coordinates[0],
+			    lng: data.reports[report].location.coordinates[1]
+			};
+
+			var modality = data.reports[report].modality;
+			
+			console.log("coordinates:", latLngMarker);
+			console.log("modality:", modality);
+
+			marker = new google.maps.Marker({
+			    map: $scope.map,
+			    animation: google.maps.Animation.DROP,
+			    position: latLngMarker,
+			    icon: 'https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/caution-32.png'
+			});
+
+			
+			google.maps.event.addListener(marker, 'click', (function(marker){
+			    infoWindow.setContent(modality);
+			    infoWindow.open($scope.map, marker);
+			})(marker));
+			
+		    }
+		    
+		}else{
+		    var alertPopup = $ionicPopup.alert({
+			title: '¡Tenemos problemas!',
+			template: 'Error: ' + data.message
+		    });
+		}	
+	    });
 	}
 	
     });
