@@ -1,1 +1,1 @@
-angular.module('starter.services', ['user.srv'])
+angular.module('starter.services', ['user.srv', 'report.srv'])

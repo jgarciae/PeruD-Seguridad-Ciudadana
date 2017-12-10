@@ -1,5 +1,98 @@
 /* Empty. Add your own CSS if you like */
+
+/*custom is class added to ion-content*/
+
+.success{
+    background: #6E91AF;
+    color: #fff;
+}
+
+.primary{
+    background: #E8D0AE;
+    color: #333;
+}
+
+.secondary{
+    background: #303030;
+    color: #fff;
+    text-decoration: none;
+}
+
+.bar.bar-assertive{
+    /*background-color: #333; !important; /* This sets the background color*/
+    /*background-color: #F57B3D !important; /* This sets the background color*/
+    border-color: #6E91AF;
+    background-color: #6E91AF; !important; /* This sets the background color*/
+    background-image: linear-gradient(0deg, #333, #333 50%, transparent 50%); */
+    border: none;
+
+}
+
+.button.button-positive{
+    background-color: #6E91AF; !important; /* This sets the background color*/
+}
+
+/*** NAVBAR ****/
+
+.custom {
+    /*background: #333; /* For browsers that do not support gradients */
+    /*background: -webkit-linear-gradient(#333, #F57B3D); /* For Safari 5.1 to 6.0 */
+    /*background: -o-linear-gradient(#333, #F57B3D); /* For Opera 11.1 to 12.0 */
+    /*background: -moz-linear-gradient(#333, #F57B3D); /* For Firefox 3.6 to 15 */
+    /*background: linear-gradient(#333, #F57B3D); /* Standard syntax */
+    background-color: #6E91AF !important; /* This sets the background color*/
+}
+
+/*Set the background to transparent for ion-item*/
+.custom .item {
+    background-color: transparent;
+    border:none;   /*Removes all borders*/
+    border-top: 0.5px solid;   /*Top Border for each menu item*/
+    border-bottom: 0.5px solid;   /*Bottom border for each menu item*/
+    border-color: transparent;   /*Sets colors for top and bottom border*/
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-left: 10px;
+    color: #fff;
+}
+
+.custom .item .icon{
+    margin-right: 15px;
+}
+
+.custom .item-complex .item-content, .dark .item-radio .item-content {
+    background-color: transparent;
+}
+
+.item.item-icon-left.positive {
+    color: #F57B3D;
+    text-align: center;
+}
+
+/* map style */
+
+.scroll {
+    height: 100%;
+}
 #map {
     width: 100%;
     height: 100%;
+}
+
+#over_map {
+    position: absolute;
+    top: 0px;
+    //left: 10px;
+    width: 90%;
+    padding-bottom: 15px;
+    margin-top: 5%;
+    margin-left: 5%;
+    z-index: 99;
+}
+
+#under_map { 
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    padding: 15px;
 }
