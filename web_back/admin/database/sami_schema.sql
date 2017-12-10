@@ -109,7 +109,9 @@ CREATE TABLE users (
     dni character varying(8),
     password character varying(128),
     created timestamp without time zone,
-    modified timestamp without time zone
+    modified timestamp without time zone,
+    first_name character varying(64),
+    last_name character varying(128)
 );
 
 
