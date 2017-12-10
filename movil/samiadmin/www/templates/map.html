@@ -31,7 +31,7 @@
 			<div class="input-label">
 			    Hace
 			</div>
-			<select ng-model="requestData.days">
+			<select ng-model="requestData.last">
 			    <option value="1">1 día</option>
 			    <option value="2">2 días</option>
 			    <option value="3">3 días</option>
@@ -54,7 +54,7 @@
 	</div>
 
 	<div id="under_map">
-	    <button class="button button-block button-positive icon-right ion-chevron-right" ng-show="buttonRequest" ng-click="request()">Confirmar punto de encuentro</button>
+	    <button class="button button-block button-positive icon-right ion-chevron-right" ng-click="report()">Denunciar un delito</button>
 	</div>
     </ion-content>
 </ion-view>

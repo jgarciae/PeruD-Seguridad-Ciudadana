@@ -69,8 +69,8 @@ class ReportsCollection extends BaseCollection
 
     public function ratioReports($query)
     {	
-    	return $this->find(
-    		[
+    	$cond = (isset($query['modality'])) ? ['modality' => $query['modality']] : [];
+    	$find = array_merge([
 				'location' => [
 					'$geoWithin' => [
 						'$centerSphere' => [
@@ -81,8 +81,67 @@ class ReportsCollection extends BaseCollection
 				'date' => [
 					'$gte' => new MongoDate(strtotime("-" . (string)$query['last'] . " day"))
 				]
-			]
-		);
+			], $cond);
+    	return $this->find($find);
     }
+
+    public function routeReports($query)
+    {
+    	$p1x = (float)$query['p1_lat'];
+    	$p1y = (float)$query['p1_lng'];
+    	$p2x = (float)$query['p2_lat'];
+    	$p2y = (float)$query['p2_lng'];
+    	$d = (float)$query['dif'];
+    	$m = ($p1y - $p2y) / ($p1x - $p2x);
+    	$raq = $d / sqrt(1 + pow($m, 2));
+
+    	$p1x1 = $p1x + $raq; $p1y1 = $p1y + $m * $raq;
+    	$p1x2 = $p1x - $raq; $p1y2 = $p1y - $m * $raq;
+
+    	$p2x1 = $p2x + $raq; $p2y1 = $p2y + $m * $raq;
+    	$p2x2 = $p2x - $raq; $p2y2 = $p2y - $m * $raq;
+
+    	debug([$p1x1, $p1y1]);
+    	debug([$p1x2, $p1y2]);
+    	debug([$p2x1, $p2y1]);
+    	debug([$p2x2, $p2y2]);
+    	//exit();
+
+    	/*return $this->find([
+				'location' => [
+					'$geoWithin' => [
+						'$geometry' => [
+							'type' => "Polygon",
+							'coordinates' => [ [
+								[$p1x1, $p1y1],
+								[$p2x1, $p2y1],
+								[$p2x2, $p2y2],
+								[$p1x2, $p1y2],
+								[$p1x1, $p1y1]
+							] ]
+						]
+					]
+				]
+			]
+    	);*/
+
+    	return $this->find([
+				'location' => [
+					'$geoWithin' => [
+						'$geometry' => [
+							'type' => "Polygon",
+							'coordinates' => [ [
+								[-16.396750, -71.531344],
+								[-16.394115, -71.534177],
+								[-16.386786, -71.519757],
+								[-16.389759, -71.518384],
+								[-16.396750, -71.531344]
+							] ]
+						]
+					]
+				]
+			]
+    	);
+   }
 
 }
