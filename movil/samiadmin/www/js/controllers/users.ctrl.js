@@ -4,9 +4,9 @@ angular.module('users.ctrl', [])
 
 	$scope.loginData = {};
 	
-	$scope.rusher = JSON.parse(window.localStorage.getItem("user_session"));
+	$scope.user = JSON.parse(window.localStorage.getItem("user_session"));
 
-	console.log($scope.rusher);
+	console.log($scope.user);
 	
 	$ionicModal.fromTemplateUrl('templates/login.html', {
 	    scope: $scope,
@@ -16,12 +16,11 @@ angular.module('users.ctrl', [])
 	}).then(function(modal) {
 	    $scope.modal = modal;
 
-	    //if($scope.rusher == null){
-		//$scope.modal.show();	
-	    //}else{
-		//$scope.pushNotification = { checked: $scope.rusher.active };
+	    if($scope.user == null){
+		$scope.modal.show();	
+	    }else{
 		$scope.modal.hide();
-	    //}
+	    }
 	});
 
 	// LOGIN
@@ -34,14 +33,14 @@ angular.module('users.ctrl', [])
 		template: '<ion-spinner></ion-spinner> <br/> Iniciando sesión...'
 	    });
 	    
-	    Rusher.login($scope.loginData).then(function(data){
+	    User.login($scope.loginData).then(function(data){
 		$ionicLoading.hide();
 		if(data.status == "200"){
 
-		    var rusher = data.rusher[0];
-		    var rusher_id = data.rusher[0].id;
+		    var user = data.user;
+		    var user_id = data.user.id;
 		    
-		    window.localStorage.setItem("user_session",  JSON.stringify(rusher));
+		    window.localStorage.setItem("user_session",  JSON.stringify(user));
 		    
 		    $ionicHistory.nextViewOptions({
 			disableBack: true
@@ -57,5 +56,21 @@ angular.module('users.ctrl', [])
 		    });
 		}	
 	    });
-	}
+	};
+
+	//LOGOUT
+	$scope.signout = function() {
+	    $timeout(function () {
+		window.localStorage.clear();
+		$ionicHistory.clearCache();
+		$ionicHistory.clearHistory();
+
+		$ionicHistory.nextViewOptions({
+		    disableBack: true
+		});
+		
+		$state.go('app.profile', {}, {reload: true});
+		
+	    }, 200)
+	};
     })
