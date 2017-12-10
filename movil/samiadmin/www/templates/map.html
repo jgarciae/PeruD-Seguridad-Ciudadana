@@ -2,14 +2,52 @@
     <ion-content>
         <div id="map" data-tap-disabled="true"></div>
 
-	<!-- <div id="over_map">
+	<div id="over_map">
 	    <div class="list">
-		<div class="item item-input-inset">
-		    <label class="item-input-wrapper">
-			<input type="text" placeholder="¿Cuál es tu destino?" ng-model="data.address">
+		<div class="item">
+		    <center>
+			<label class="item">Buscar actividad delictiva</label>
+		    </center>
+		    <label class="item item-input item-select">
+			<div class="input-label">
+			    En
+			</div>
+			<select ng-model="requestData.meters">
+			    <option value="20">20 metros</option>
+			    <option value="50">50 metros</option>
+			    <option value="60">60 metros</option>
+			    <option value="70">70 metros</option>
+			    <option value="80">80 metros</option>
+			    <option value="90">90 metros</option>
+			    <option value="100">100 metros</option>
+			    <option value="200">200 metros</option>
+			    <option value="300">300 metros</option>
+			    <option value="400">400 metros</option>
+			    <option value="500">500 metros</option>
+			    <option value="600">600 metros</option>
+			</select>
 		    </label>
-		    <button class="button button-small button-positive" ng-click="search()">
-			Buscar
+		    <label class="item item-input item-select">
+			<div class="input-label">
+			    Hace
+			</div>
+			<select ng-model="requestData.days">
+			    <option value="1">1 día</option>
+			    <option value="2">2 días</option>
+			    <option value="3">3 días</option>
+			    <option value="4">4 días</option>
+			    <option value="5">5 días</option>
+			    <option value="6">6 días</option>
+			    <option value="7">7 días</option>
+			    <option value="8">8 días</option>
+			    <option value="9">9 días</option>
+			    <option value="10">10 días</option>
+			    <option value="11">11 días</option>
+			    <option value="12">12 días</option>
+			</select>
+		    </label>
+		    <button class="button button-block button-small button-positive" ng-click="search()">
+			Buscar incidencias
 		    </button>
 		</div>
 	    </div>
@@ -17,6 +55,6 @@
 
 	<div id="under_map">
 	    <button class="button button-block button-positive icon-right ion-chevron-right" ng-show="buttonRequest" ng-click="request()">Confirmar punto de encuentro</button>
-	</div>-->
+	</div>
     </ion-content>
 </ion-view>
