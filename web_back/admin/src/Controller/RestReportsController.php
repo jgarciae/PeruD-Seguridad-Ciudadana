@@ -27,6 +27,19 @@ class RestReportsController extends AppController
     	$report = $this->request->data;
     	$reportsCollection = CollectionRegistry::get('Reports');
         $row = $reportsCollection->insertTo($report);
-        debug($row);
+
+        if ($row) {
+            $status = '200';
+            $message = 'Ok';
+        }else{
+            $status = '500';
+            $message = 'Internal Server Error';
+        }
+        
+        $this->set([
+            'status' => $status,
+            'message' => $message,
+            '_serialize' => ['status', 'message']
+        ]);
     }
 }
