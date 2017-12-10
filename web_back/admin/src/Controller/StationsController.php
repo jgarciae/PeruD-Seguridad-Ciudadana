@@ -41,6 +41,11 @@ class StationsController extends AppController
         $this->set('_serialize', ['station']);
     }
 
+    public function map()
+    {
+
+    }
+
     /**
      * Add method
      *

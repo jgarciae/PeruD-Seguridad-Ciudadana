@@ -36,6 +36,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <!-- MAIN CSS -->
     <?= $this->Html->css('./main.css') ?>
     <?= $this->Html->css('./demo.css') ?>
+    <?= $this->Html->script('./vendor/jquery/jquery.min.js')?>
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
     <?= $this->fetch('meta') ?>
@@ -98,6 +99,13 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                         <li>
                             <?= $this->Html->link(__('<i class="lnr lnr-code"></i> <span>Comisarias</span>'), ['controller'=>'stations', 'action' => 'index'],['escape'=>false]) ?>
                         </li>
+
+                        <li>
+                            <?= $this->Html->link(__('<i class="lnr lnr-code"></i> <span>Mapa de Incidencias</span>'), ['controller'=>'stations', 'action' => 'map'],['escape'=>false]) ?>
+                        </li>
+
+                        <li>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -116,15 +124,10 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </div>
         <!-- END MAIN -->
         <div class="clearfix"></div>
-        <footer>
-            <div class="container-fluid">
-                <p class="copyright">&copy; 2017 <a href="https://www.themeineed.com" target="_blank">Theme I Need</a>. All Rights Reserved.</p>
-            </div>
-        </footer>
     </div>
     <!-- END WRAPPER -->
     <!-- Javascript -->
-    <?= $this->Html->script('./vendor/jquery/jquery.min.js')?>
+    
     <?= $this->Html->script('./vendor/bootstrap/js/bootstrap.min.js')?>
     <?= $this->Html->script('./vendor/jquery-slimscroll/jquery.slimscroll.min.js')?>
     <?= $this->Html->script('./klorofil-common.js')?>
