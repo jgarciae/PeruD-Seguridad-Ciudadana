@@ -53,7 +53,8 @@ Router::scope('/api', function ($routes) {
 
     $routes->resources('RestReports', ['map' => 
             [
-                'insert' => ['action' => 'insert', 'method' => 'POST']
+                'insert' => ['action' => 'insert', 'method' => 'POST'],
+                'generate' => ['action' => 'generate', 'method' => 'POST']
             ]
         ]);
 

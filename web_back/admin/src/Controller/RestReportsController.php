@@ -35,7 +35,28 @@ class RestReportsController extends AppController
             $status = '500';
             $message = 'Internal Server Error';
         }
-        
+
+        $this->set([
+            'status' => $status,
+            'message' => $message,
+            '_serialize' => ['status', 'message']
+        ]);
+    }
+
+    public function generate() 
+    {
+        $users = $this->Users->find();
+        $reportsCollection = CollectionRegistry::get('Reports');
+        $row = $reportsCollection->generateReports($users->toArray(), $this->request->data['num'], $this->request->data['last']);
+
+        if ($row) {
+            $status = '200';
+            $message = 'Ok';
+        }else{
+            $status = '500';
+            $message = 'Internal Server Error';
+        }
+
         $this->set([
             'status' => $status,
             'message' => $message,
