@@ -85,7 +85,7 @@ class ReportsCollection extends BaseCollection
     	return $this->find($find);
     }
 
-    /*public function routeReports($query)
+    public function routeReports($query)
     {
     	$p1x = (float)$query['p1_lat'];
     	$p1y = (float)$query['p1_lng'];
@@ -93,7 +93,13 @@ class ReportsCollection extends BaseCollection
     	$p2y = (float)$query['p2_lng'];
     	$d = (float)$query['dif'];
     	$m = ($p1y - $p2y) / ($p1x - $p2x);
-    	$x1 = 
+    	$raq = $d / sqrt(1 + pow($m, 2));
+
+    	$p1x1 = $p1x + $raq; $p1y1 = $p1y + $m * $raq;
+    	$p1x2 = $p1x - $raq; $p1y2 = $p1y - $m * $raq;
+
+    	$p2x1 = $p2x + $raq; $p2y1 = $p2y + $m * $raq;
+    	$p2x2 = $p2x - $raq; $p2y2 = $p2y - $m * $raq;
 
     	return $this->find([
 				'location' => [
@@ -101,17 +107,17 @@ class ReportsCollection extends BaseCollection
 						'$geometry' => [
 							'type' => "Polygon",
 							'coordinates' => [ 
-								[],
-								[],
-								[],
-								[],
-								[]
+								[$p1x1, $p1y1],
+								[$p2x1, $p2y1],
+								[$p2x2, $p2y2],
+								[$p1x2, $p1y2],
+								[$p1x1, $p1y1]
 							]
 						]
 					]
 				]
 			]
     	);
-    }*/
+   }
 
 }

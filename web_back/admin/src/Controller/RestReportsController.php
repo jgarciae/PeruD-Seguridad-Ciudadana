@@ -77,6 +77,8 @@ class RestReportsController extends AppController
             $reports[$key]['dateF'] = date('Y-m-d H:i:s', $reports[$key]['date']->sec);
         }
 
+        $this->response->header('Access-Control-Allow-Origin', '*');
+
         $this->set([
             'status' => $status,
             'message' => $message,
@@ -86,7 +88,7 @@ class RestReportsController extends AppController
         ]);
     }
 
-    /*public function getRouteReports()
+    public function getRouteReports()
     {
         $reportsCollection = CollectionRegistry::get('Reports');
         $reports = $reportsCollection->routeReports($this->request->data);
@@ -106,5 +108,5 @@ class RestReportsController extends AppController
             'count' => count($reports),
             '_serialize' => ['status', 'message', 'count', 'reports']
         ]);
-    }*/
+    }
 }
