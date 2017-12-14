@@ -26,6 +26,8 @@ if (!Configure::read('debug')):
 endif;
 
 $cakeDescription = 'SAMI';
+// debug($query->toArray());
+$aqp = $query;
 ?>
 <!DOCTYPE html>
 <html>
@@ -75,6 +77,7 @@ $cakeDescription = 'SAMI';
        padding-left: 10px;
      }*/
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
 
 </head>
@@ -107,8 +110,8 @@ $cakeDescription = 'SAMI';
                           </li>
                           <li><a href="#section2">Estadísticas</a>
                           </li>
-                          <li><a href="#section4">Contact</a>
-                          </li>
+                          <!-- <li><a href="#section4">Contact</a>
+                          </li> -->
                       </ul>
                   </div>
                   <!--/.nav-collapse -->
@@ -130,8 +133,8 @@ $cakeDescription = 'SAMI';
                       <div class="container">
                           <div class="row new-banner-text">
 
-                              <h1 style="color:#0040FF;" data-animate="fadeInDown">Sami</h1>
-                              <p  style="color:black;" class="message" data-animate="fadeInUp">Una mañana desperte con ganas de pasear <br> por mi ciudad gracias a Sami Security, puedo <br> siempre ver mis rutas mas seguras!!</p>
+                              <h1 style="color:#0040FF;" data-animate="fadeInDown">BIENVENIDO A SAMI</h1>
+                              <p  style="color:black;" class="message" data-animate="fadeInUp">CON TU AYUDA LIMPIAREMOS ESTA CIUDAD :)</p>
 
 
                           </div>
@@ -182,10 +185,7 @@ $cakeDescription = 'SAMI';
 
                               <div class="col-md-8 col-md-offset-2">
 
-                                  <p class="text-large text-thin"  data-animate="fadeInUp">Five quacking zephyrs jolt my wax bed. Flummoxed by job, kvetching W. zaps Iraq. Cozy sphinx waves quart jug of bad milk. </p>
-                                  <p class="text-large text-thin margin-bottom"  data-animate="fadeInUp">A very bad quack might jinx zippy fowls. Few quips galvanized the mock jury box. Quick brown dogs jump over the lazy fox. The jay, pig, fox, zebra, and my wolves quack! Blowzy red vixens fight for a quick jump. Joaquin Phoenix was gazed by MTV for luck. A wizard’s job is to vex chumps quickly in fog. Watch "Jeopardy!", Alex Trebek's fun TV quiz game. Woven silk pyjamas exchanged for blue quartz.</p>
-
-                                  <p   data-animate="fadeInUp"><img src="img/team.jpg" alt="" class="img-circle img-responsive ondra-michal"></p>
+                                 <canvas id="line-chart" width="800" height="450"></canvas>
 
                               </div>
 
@@ -203,51 +203,13 @@ $cakeDescription = 'SAMI';
               <!-- *** JOIN US ***
           _________________________________________________________ -->
 
-              <div class="section" data-animate="bounceIn">
-                  <div class="container">
-                      <div class="col-md-8 col-md-offset-2">
-
-
-                          <h2 class="title">Join us for the fun!</h2>
-
-                          <p class="lead margin-bottom">Blowzy red vixens fight for a quick jump. Joaquin Phoenix was gazed by MTV for luck. A wizard’s job is to vex chumps quickly in fog. Watch "Jeopardy! ", Alex Trebek's fun TV quiz game. Woven silk pyjamas exchanged for blue quartz. Brawny gods just.</p>
-
-
-                          <div class="row">
-
-                              <div class="col-md-8 col-md-offset-2">
-
-
-                                  <form action="#" method="post" id="frm-landingPage2" class="form">
-                                      <div class="input-group">
-
-                                          <input type="text" class="form-control" placeholder="your email address" name="email" id="frm-landingPage2-email" required value="">
-
-                                          <span class="input-group-btn">
-
-                                              <input class="btn btn-default" type="submit" value="Submit" name="_submit" id="frm-landingPage2-submit">
-
-                                          </span>
-
-                                      </div>
-                                      <!-- /input-group -->
-                                  </form>
-                              </div>
-                          </div>
-
-                      </div>
-                      <!-- /.12 -->
-                  </div>
-                  <!-- /.container -->
-              </div>
-              <!-- /.section -->
 
               <!-- *** JOIN US END *** -->
 
               <!-- *** CONTACT ***
           _________________________________________________________ -->
 
-              <div class="section" id="section4" >
+              <!-- <div class="section" id="section4" >
                   <div class="container">
                       <div class="col-md-8 col-md-offset-2">
 
@@ -263,11 +225,11 @@ $cakeDescription = 'SAMI';
                           </ul>
 
                       </div>
-                      <!-- /.12 -->
+
                   </div>
-                  <!-- /.container -->
+
               </div>
-              <!-- /.section -->
+              -->
 
 
 
@@ -357,6 +319,63 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 
   google.maps.event.addDomListener(window, 'load', initMap);
 
+</script>
+
+<script>
+	 datasets: [
+     {
+         data: [86,114,106,106,107,111,133,221,783,2478],
+         label: "2011",
+         borderColor: "#3e95cd",
+         fill: false
+       },
+     ]
+  var datasets = [];
+  var colors = ["#692020","#3e95cd","#3E368F","#3E368F","#55715E","#DECC27","#C27F65","#C23D0D","#A25336","#443C3C"]
+  var aqp_js = '<?php echo $aqp; ?>';
+  var obj = jQuery.parseJSON(aqp_js);
+   jQuery.each(obj, function(i, val) {
+	   var arr = [];
+	   arr.push(val.sum_2011);
+	   arr.push(val.sum_2012);
+	   arr.push(val.sum_2013);
+	   arr.push(val.sum_2014);
+	   arr.push(val.sum_2015);
+	   arr.push(val.sum_2016);
+
+    datasets[i] = {
+	"data" : arr,
+	"label": val.modality,
+	"borderColor": colors[i],
+    "fill": false
+	};
+
+
+
+  });
+
+console.log("nuevo json -> ", datasets);
+  // console.log(obj);
+  // for (var i = 0; i < aqp_js.length; i++) {
+  //   console.log(aqp_js[i]);
+  // }
+</script>
+
+<script>
+
+   new Chart(document.getElementById("line-chart"), {
+   type: 'line',
+   data: {
+     labels: [2011,2012,2013,2014,2015,2016],
+     datasets: datasets
+   },
+   options: {
+     title: {
+       display: true,
+       text: 'AREQUIPA INDICE DE MUERTES VIOLENTAS'
+     }
+   }
+ });
 </script>
 
 <!-- <script type="text/javascript">

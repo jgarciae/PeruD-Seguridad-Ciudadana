@@ -18,6 +18,7 @@ use Cake\Core\Configure;
 use Cake\Network\Exception\ForbiddenException;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
+use Cake\ORM\TableRegistry;
 
 /**
  * Static content controller
@@ -57,6 +58,24 @@ class PagesController extends AppController
             $subpage = $path[1];
         }
         $this->set(compact('page', 'subpage'));
+        $registerstable = TableRegistry::get('Registers');
+        $query = $registerstable->find('all',[
+            'fields'=>[
+                'modality',
+                'sum_2011'=>'SUM(year_2011)',
+                'sum_2012'=>'SUM(year_2012)',
+                'sum_2013'=>'SUM(year_2013)',
+                'sum_2014'=>'SUM(year_2014)',
+                'sum_2015'=>'SUM(year_2015)',
+                'sum_2016'=>'SUM(year_2016)'],
+            'group'=>['modality'],
+            'order'=>['modality asc']
+        ]);
+        
+        $query = json_encode($query);
+        // debug($query);
+        // exit();
+        $this->set(compact('query'));
 
         try {
             $this->render(implode('/', $path));
