@@ -26,7 +26,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    
+
     <?= $this->Html->meta('icon') ?>
     <!-- VENDOR CSS -->
     <?= $this->Html->css('./bootstrap/css/bootstrap.min.css') ?>
@@ -50,7 +50,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <!-- NAVBAR -->
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="brand">
-                <?= $this->Html->image("logo-m.jpeg", ["alt" => "Logo", 'class'=>'img-responsive logo'])?>
+                <?= $this->Html->image("new_logo.png", ["alt" => "Logo", 'class'=>'img-responsive logo'])?>
             </div>
             <div class="container-fluid">
                 <div class="navbar-btn">
@@ -127,11 +127,10 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </div>
     <!-- END WRAPPER -->
     <!-- Javascript -->
-    
+
     <?= $this->Html->script('./vendor/bootstrap/js/bootstrap.min.js')?>
     <?= $this->Html->script('./vendor/jquery-slimscroll/jquery.slimscroll.min.js')?>
     <?= $this->Html->script('./klorofil-common.js')?>
 </body>
 
 </html>
-

@@ -6,7 +6,7 @@
     <div class="content">
         <?= $this->Flash->render('auth') ?>
         <div class="header">
-            <div class="logo text-center"><?= $this->Html->image("logo-m.jpeg", ["alt" => "Logo"])?></div>
+          <?= $this->Html->image("new_logo.png", ["alt" => "Logo"])?>
             <p class="lead">Inicio de Sesión</p>
         </div>
         <?= $this->Form->create() ?>
@@ -35,6 +35,7 @@
 <div class="right">
     <div class="overlay"></div>
     <div class="content text">
+        <div class="logo text-center"></div>
         <h1 class="heading">Dashboard de Administración</h1>
         <p>by Apselom</p>
     </div>
