@@ -30,12 +30,17 @@ class ReportsCollection extends BaseCollection
     {
         return $this->insert(
         	[
-	        	'dni' => $report['dni'], 
+	        	//'dni' => $report['dni'],
+        		'school' => $report['school'],
+        		'status' => $report['status'],
+        		'numero' => $report['numero'],
+        		'max_grade' => $report['max_grade'],
+        		'min_grade' => $report['min_grade'],
 	        	'location' => [
 	        		'type' => "Point",
 	        		'coordinates' => [
-	        			(float)$report['lat'], 
-	        			(float)$report['lng']
+	        			(float)$report['lng'], 
+	        			(float)$report['lat']
 	        		]
 	        	],
 	        	'intensity' => $report['intensity'],
@@ -52,13 +57,23 @@ class ReportsCollection extends BaseCollection
     	for ($i = 0; $i < $num; $i++) { 
     		$report = [];
     		$n_r = rand(0, count($users) - 1);
-    		$n_lat = rand(375, 450);
+    		/*$n_lat = rand(375, 450);
     		$n_lng = rand(493, 583);
+    		$n_lat_d = rand(0, 999);
+    		$n_lng_d = rand(0, 999);*/
+    		$n_lat = rand(250, 400);
+    		$n_lng = rand(530, 700);
     		$n_lat_d = rand(0, 999);
     		$n_lng_d = rand(0, 999);
     		$n_i = rand(1 ,10);
-    		$report['dni'] = $users[$n_r]['dni'];
-    		$report['location'] = ['type' => "Point", "coordinates" => [(float)("-16." . (string)$n_lat . (string)$n_lat_d), (float)("-71." . (string)$n_lng . (string)$n_lng_d)]];
+    		//$report['dni'] = $users[$n_r]['dni'];
+    		$report['school'] = "Colegio #".$i;
+    		$report['status'] = rand(0 ,3);
+    		$report['numero'] = rand(50 ,200);
+    		$report['max_grade'] = rand(7 ,10);
+    		$report['min_grade'] = rand(4 ,7);
+    		//$report['location'] = ['type' => "Point", "coordinates" => [(float)("-16." . (string)$n_lat . (string)$n_lat_d), (float)("-71." . (string)$n_lng . (string)$n_lng_d)]];
+    		$report['location'] = ['type' => "Point", "coordinates" => [(float)("-99." . (string)$n_lng . (string)$n_lng_d), (float)("19." . (string)$n_lat . (string)$n_lat_d)]];
     		$report['intensity'] = $n_i;
     		$report['modality'] = $modalities[rand(0, 5)];
     		$report['date'] = new MongoDate(strtotime($this->lastRandomDate(date('Y-m-d H:i:s'), $lastDays)));
@@ -74,7 +89,7 @@ class ReportsCollection extends BaseCollection
 				'location' => [
 					'$geoWithin' => [
 						'$centerSphere' => [
-							[(float)$query['lat'], (float)$query['lng']], ($query['meters'] / 6378100)
+							[(float)$query['lng'], (float)$query['lat']], ($query['meters'] / 6378100)
 						]
 					]
 				],

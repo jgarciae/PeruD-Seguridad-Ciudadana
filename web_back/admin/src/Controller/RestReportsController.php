@@ -47,7 +47,10 @@ class RestReportsController extends AppController
     {
         $users = $this->Users->find();
         $reportsCollection = CollectionRegistry::get('Reports');
-        $row = $reportsCollection->generateReports($users->toArray(), $this->request->data['num'], $this->request->data['last']);
+        $num = 5000;
+        $last = 100;
+        $row = $reportsCollection->generateReports($users->toArray(), $num, $last);
+        //$row = $reportsCollection->generateReports($users->toArray(), $this->request->data['num'], $this->request->data['last']);
 
         if ($row) {
             $status = '200';
@@ -56,6 +59,8 @@ class RestReportsController extends AppController
             $status = '404';
             $message = 'Not Found';
         }
+        $status = '200';
+        $message = 'Ok';
 
         $this->set([
             'status' => $status,

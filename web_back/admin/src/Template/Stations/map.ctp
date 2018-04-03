@@ -70,10 +70,10 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
-	var $url = "http://samiadmin.airefon.online/api/rest_reports/get_ratio_reports.json";
+	var $url = "http://127.0.0.1:8082/api/rest_reports/get_ratio_reports.json";
 	//$url = "http://192.168.9.102/pd/web_back/admin/api/rest_reports/get_ratio_reports.json";
 
-	var params = {"lat": "-16.391665", "lng": "-71.532138", "meters": 300, "last": 7};
+	var params = {"lat": "-16.391665", "lng": "-71.532138", "meters": 500, "last": 7};
 
 	var settings = {
 	  "url": $url,
@@ -82,7 +82,7 @@ $(document).ready(function() {
 	}
 
 	$.ajax(settings).done(function (response) {
-	  //console.log(response.reports);
+	  console.log(response.reports);
 	  $.each(response.reports, function (i, item) {
 	  	console.log(item);
 	  	var pos = item.location.coordinates;
